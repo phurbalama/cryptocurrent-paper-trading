@@ -4,8 +4,11 @@ import {styled, alpha} from "@mui/material/styles";
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchComponent from "./SearchComponent";
+import { useState } from "react";
 
 function NavBarComponent() {
+
+let[search, setSearch] = useState("")
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -45,8 +48,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-  return <AppBar>
+    function searchHandler(e){
+        setSearch(e.target.value)
+    }
+  return (
+  <><AppBar>
       <Toolbar>
           <Typography variant="h6">
                 CryptoCurrency Paper Trading
@@ -56,13 +62,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
               <SearchIcon/>
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+                
+              placeholder="search"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={searchHandler}
+                value={search}
+                autoFocus
+              
             />
+            
           </Search>
           
       </Toolbar>
-  </AppBar>;
+  </AppBar>
+  <SearchComponent name = {search}/>
+  </>);
 }
 
 export default NavBarComponent;
