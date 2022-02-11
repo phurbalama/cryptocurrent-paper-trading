@@ -1,27 +1,20 @@
+import { Avatar, TableCell, TableRow } from "@mui/material";
 
 
 function CoinComponent({name,image,symbol,price,volume,marketcap,percentChange}) {
-    return <div className="coin-container">
-      <div className="coin-row">
-          <div className="coin">
-              <img src={image} alt="crypto" />
-              <h1>{name}</h1>
-              <p className="coin-symbol">{symbol}</p>
-
-          </div>
-          <div className="coin-data">
-              <p className="coin-price">${price}</p>
-              <p className="volume">${volume.toLocaleString()}</p>
-              <p className="coin-percent-change">{percentChange.toFixed(2)}%</p>
-              <p className="coin-marketcap">${marketcap.toLocaleString()}</p>
-
-          </div>
-      </div>
-
-  </div>
+    return <TableRow>
+            <TableCell>
+                <Avatar src={image}/>
+                {name[0].toUpperCase()+name.slice(1)}
+            </TableCell>
+            <TableCell align="right">{symbol}</TableCell>
+            <TableCell align="right">${price}</TableCell>
+            <TableCell align="right">${volume.toLocaleString()}</TableCell>
+            <TableCell align="right">{percentChange.toFixed(2)}%</TableCell>
+            <TableCell align="right">${marketcap.toLocaleString()}</TableCell>
+        </TableRow>
     
     
 }
-
 
 export default CoinComponent;
